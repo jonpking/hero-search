@@ -1,14 +1,17 @@
 import React from "react";
 import SearchBar from "./SearchBar";
+import API from "../apis/api";
 
 class App extends React.Component {
     state = {
         searchTerm: ""
     };
 
-    handleSearchSubmit = (event) => {
+    handleSearchSubmit = async event => {
         event.preventDefault();
         console.log(this.state.searchTerm);
+        const response = await API.get(`search/${this.state.searchTerm}`);
+        console.log(response);
     };
 
     handleSearchChange = (event) => {
