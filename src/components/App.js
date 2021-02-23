@@ -3,19 +3,11 @@ import SearchBar from "./SearchBar";
 import API from "../apis/api";
 
 class App extends React.Component {
-    state = {
-        searchTerm: ""
-    };
-
-    handleSearchSubmit = async event => {
+    handleSearchSubmit = async (searchTerm, event) => {
         event.preventDefault();
-        console.log(this.state.searchTerm);
-        const response = await API.get(`search/${this.state.searchTerm}`);
+        console.log(searchTerm);
+        const response = await API.get(`search/${searchTerm}`);
         console.log(response);
-    };
-
-    handleSearchChange = (event) => {
-        this.setState({ searchTerm: event.target.value });
     };
 
     render() {
@@ -24,8 +16,6 @@ class App extends React.Component {
                 <div className="ui segment">
                     <SearchBar
                         onSearchSubmit={this.handleSearchSubmit}
-                        searchTerm={this.state.searchTerm}
-                        onSearchChange={this.handleSearchChange}
                     />
                 </div>
             </div>
